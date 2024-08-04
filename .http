@@ -2,12 +2,12 @@
 @authToken = {{login.response.body.token}}
 
 # @name create_account
-POST {{{baseUrl}}/users/signup
+POST http://localhost:3333/users/signup
 Content-Type: application/json
 
 {
     "name": "Israel",
-    "email": "israelcruzz@dev.com",
+    "email": "israelcruzzz@dev.com",
     "password": "12345678",
     "cpf": "570.795.808-89",
     "birthDate": "2024-08-01 18:00:00"
@@ -15,4 +15,15 @@ Content-Type: application/json
 
 ###
 # @name login
-GET {{{baseUrl}}/auth
+POST http://localhost:3333/auth
+Content-Type: application/json
+
+{
+    "email": "israelcruzzz@dev.com",
+    "password": "12345678"
+}
+
+###
+# @name a
+GET http://localhost:3333/auth/a
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NzU3ZjM1Ny0xYTdmLTQ0NjUtODM2Yi1lYjMwNGFhYWI1YmMiLCJpYXQiOjE3MjI4MDA3MjR9.azuM9NulP-Mm4tPII5Y1gbZUG1BwLGDMRNopbqSwUHA

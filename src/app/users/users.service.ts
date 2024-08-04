@@ -35,4 +35,10 @@ export class UsersService {
 
     return account;
   }
+
+  public async findByEmail(email: string) {
+    const user = await this.usersRepository.findByEmail(email);
+
+    return user;
+  }
 }

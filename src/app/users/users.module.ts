@@ -14,5 +14,6 @@ import { PrismaUserRepository } from './repositories/prisma-user.repository';
     HashService,
     { provide: UserRepositoryInterface, useClass: PrismaUserRepository },
   ],
+  exports: [UsersService],
 })
 export class UsersModule {}

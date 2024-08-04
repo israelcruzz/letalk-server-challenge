@@ -16,6 +16,10 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(config: ConfigService<Env, true>) {
     const publicKey = config.get('JWT_SECRET', { infer: true });
 
+    if (!publicKey) {
+      throw new Error('JWT_SECRET environment variable is not set');
+    }
+
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       secretOrKey: publicKey,
