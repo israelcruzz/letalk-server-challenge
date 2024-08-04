@@ -1,4 +1,8 @@
-POST http://localhost:3333/users/signup
+@baseUrl = http://localhost:3333
+@authToken = {{login.response.body.token}}
+
+# @name create_account
+POST {{{baseUrl}}/users/signup
 Content-Type: application/json
 
 {
@@ -10,4 +14,5 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:3333/auth
+# @name login
+GET {{{baseUrl}}/auth
