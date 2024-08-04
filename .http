@@ -1,0 +1,10 @@
+POST http://localhost:3000/auth/signup
+Content-Type: application/json
+
+{
+    "name": "Israel",
+    "email": "israelcruz@dev.com",
+    "password": "12345678",
+    "cpf": "570.795.808-89",
+    "birthDate": "2024-08-01 18:00:00"
+}
