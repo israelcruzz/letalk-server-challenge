@@ -27,8 +27,8 @@ export const loanSimulate = ({
 
   const ufValues = {
     SP: 1,
-    MG: 0.8,
-    RJ: 0.9,
+    MG: 0.80,
+    RJ: 0.90,
     ES: 1.11,
   };
 
@@ -36,6 +36,7 @@ export const loanSimulate = ({
 
   let remainingDebt = totalDebt;
   let totalPaid = 0;
+  let totalInterestPaid = 0;
   let months = 0;
   let currentDate = new Date();
 
@@ -53,6 +54,7 @@ export const loanSimulate = ({
       (adjustedDebitBalance - paymentForTheMonth).toFixed(2),
     );
     totalPaid += paymentForTheMonth;
+    totalInterestPaid += interestForTheMonth;
     months++;
 
     let paymentDate = new Date(currentDate);
@@ -70,9 +72,13 @@ export const loanSimulate = ({
   }
 
   const response = {
-    simulations,
+    priceRequired: totalDebt,
+    fees: ufValues[uf],
     totalMonths: months,
     totalPrice: parseFloat(totalPaid.toFixed(2)),
+    monthlyPayment,
+    totalFees: totalInterestPaid,
+    simulations,
   };
 
   return response;

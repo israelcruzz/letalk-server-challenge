@@ -1,4 +1,4 @@
-import { Controller, Post, Body, UsePipes, BadRequestException, Get } from '@nestjs/common';
+import { Controller, Post, Body, UsePipes, Get } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { createUserDto, ICreateUserDto } from './dto/create-user.dto';
 import { ZodValidatePipe } from '../pipes/zod-validation-type';
