@@ -13,8 +13,10 @@ export class AuthController {
   @Post('/signup')
   @UsePipes(new ZodValidatePipe(createAccountBodySchema))
   public async signUp(@Body() body: createAccountBodySchemaType) {
-    const { name, email, password, cpf, birthDate } = body;
+    const bodyData = body;
 
-    return body
+    const account = await this.authService.signUp(bodyData);
+
+    return account;
   }
 }

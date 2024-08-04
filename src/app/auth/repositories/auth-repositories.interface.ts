@@ -1,5 +1,5 @@
-import { createAccountBodySchemaType } from "../dto/create-account-dto";
+import { createAccountBodySchemaType } from '../dto/create-account-dto';
 
-export interface AuthRepositoriesInterface {
+export abstract class AuthRepositoriesInterface {
   store: (user: createAccountBodySchemaType) => Promise<{ account: string }>;
 }

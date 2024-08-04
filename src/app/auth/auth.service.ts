@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { AuthRepositoriesInterface } from './repositories/auth-repositories.interface';
 import { createAccountBodySchemaType } from './dto/create-account-dto';
 import { HashService } from '../services/hash/hash.service';
+import { AuthRepositoriesInterface } from './repositories/auth-repositories.interface';
 
 @Injectable()
 export class AuthService {
