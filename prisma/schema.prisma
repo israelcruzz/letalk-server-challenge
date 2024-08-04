@@ -12,7 +12,7 @@ model User {
   name      String
   email     String
   password  String
-  cpf       Float
+  cpf       String
   birthDate DateTime
   createdAt DateTime @default(now())
   loan      Loan[]
@@ -21,7 +21,7 @@ model User {
 }
 
 model Loan {
-  id            String  @id @default(uuid())
+  id            String   @id @default(uuid())
   requiredValue Float
   amountMonth   Float
   interestRate  Decimal
@@ -30,7 +30,7 @@ model Loan {
   totalPay      Float
   uf            String
   userId        String
-  createdAt DateTime @default(now())
+  createdAt     DateTime @default(now())
 
   simulations Simulations[]
 
