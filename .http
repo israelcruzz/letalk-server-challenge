@@ -24,6 +24,4 @@ Content-Type: application/json
 }
 
 ###
-# @name a
-GET http://localhost:3333/auth/a
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NzU3ZjM1Ny0xYTdmLTQ0NjUtODM2Yi1lYjMwNGFhYWI1YmMiLCJpYXQiOjE3MjI4MDA3MjR9.azuM9NulP-Mm4tPII5Y1gbZUG1BwLGDMRNopbqSwUHA
+

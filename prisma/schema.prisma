@@ -31,6 +31,7 @@ model Loan {
   uf            String
   userId        String
   createdAt     DateTime @default(now())
+  state         State    @default(PENDING)
 
   simulations Simulations[]
 
@@ -51,4 +52,10 @@ model Simulations {
   loan Loan @relation(fields: [loanId], references: [id])
 
   @@map("simulations")
+}
+
+enum State {
+  PENDING
+  ACTIVE
+  CANCELED
 }
