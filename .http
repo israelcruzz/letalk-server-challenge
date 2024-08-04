@@ -8,3 +8,6 @@ Content-Type: application/json
     "cpf": "570.795.808-89",
     "birthDate": "2024-08-01 18:00:00"
 }
+
+###
+GET http://localhost:3333/auth
