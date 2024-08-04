@@ -1,7 +1,8 @@
-import { Controller, Post, Body, UsePipes, BadRequestException } from '@nestjs/common';
+import { Controller, Post, Body, UsePipes, BadRequestException, Get } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { createUserDto, ICreateUserDto } from './dto/create-user.dto';
 import { ZodValidatePipe } from '../pipes/zod-validation-type';
+import { loanSimulate } from '../utils/loan-simulate';
 
 @Controller('users')
 export class UsersController {
@@ -13,5 +14,12 @@ export class UsersController {
     const response = await this.usersService.create(body);
 
     return response;
+  }
+
+  @Get()
+  index(){
+    const a = loanSimulate({ monthlyPayment: 15000, totalDebt: 60000, uf: "SP" });
+
+    return a
   }
 }
