@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from 'src/app/services/prisma/prisma.service';
 import { User } from '../entities/user.entity';
 import { UserRepositoryInterface } from './user.repository-interface';
@@ -13,5 +13,15 @@ export class PrismaUserRepository implements UserRepositoryInterface {
     });
 
     return { account: account.id };
+  }
+
+  public async findByEmail(email: string) {
+    const findEmail = await this.prismaService.user.findUnique({
+      where: {
+        email,
+      },
+    });
+
+    return findEmail;
   }
 }
