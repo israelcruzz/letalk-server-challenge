@@ -5,6 +5,8 @@ import { AuthModule } from './app/auth/auth.module';
 import { HashService } from './app/services/hash/hash.service';
 import { ConfigModule } from '@nestjs/config';
 import { envSchema } from './app/utils/env';
+import { LoanModule } from './app/loan/loan.module';
+import { SimulateModule } from './app/simulate/simulate.module';
 
 @Module({
   imports: [
@@ -14,6 +16,8 @@ import { envSchema } from './app/utils/env';
       validate: (env) => envSchema.parse(env),
       isGlobal: true,
     }),
+    LoanModule,
+    SimulateModule,
   ],
   controllers: [],
   providers: [PrismaService, HashService],

@@ -26,3 +26,14 @@ Content-Type: application/json
 ###
 
 GET http://localhost:3333/users
+
+###
+# @name simulate_fic
+POST http://localhost:3333/simulate/fic
+Content-Type: application/json
+
+{
+    "monthlyPayment": 15000,
+    "totalDebt": 60000,
+    "uf": "SP"
+}

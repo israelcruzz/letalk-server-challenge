@@ -12,7 +12,7 @@ export interface ResponseSimulate {
   totalPrice: number;
 }
 
-interface LoanSimulateType {
+export interface LoanSimulateType {
   monthlyPayment: number;
   totalDebt: number;
   uf: 'SP' | 'MG' | 'RJ' | 'ES';
