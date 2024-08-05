@@ -1,5 +1,4 @@
-import { Body, Controller, Post, UsePipes } from '@nestjs/common';
-import { ZodValidatePipe } from '../pipes/zod-validation-type';
+import { Body, Controller, Post } from '@nestjs/common';
 import { SimulateService } from './simulate.service';
 import { SimulateLoanDto } from './dto/simulate-loan.dto';
 
@@ -7,7 +6,7 @@ import { SimulateLoanDto } from './dto/simulate-loan.dto';
 export class SimulateController {
   constructor(private readonly simulateService: SimulateService) {}
 
-  @Post('fic')
+  @Post()
   public simulate(@Body() body: SimulateLoanDto) {
     const response = this.simulateService.simulate(body);
 

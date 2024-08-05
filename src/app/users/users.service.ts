@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { HashService } from '../services/hash/hash.service';
 import { UserRepositoryInterface } from './repositories/user.repository-interface';
@@ -38,6 +42,16 @@ export class UsersService {
 
   public async findByEmail(email: string) {
     const user = await this.usersRepository.findByEmail(email);
+
+    return user;
+  }
+
+  public async findById(id: string) {
+    const user = await this.usersRepository.findById(id);
+
+    if (!user) {
+      throw new BadRequestException(MESSAGE_HELPERS.userError);
+    }
 
     return user;
   }

@@ -86,3 +86,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2Y2I1ZjAzO
 {
   state: "CANCELED"
 }
+
+###
+
+GET http://localhost:3333/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2Y2I1ZjAzOS1hZTA1LTRkMTItOTNlMS0xNmI3YTU3YTc4ZTQiLCJpYXQiOjE3MjI4MzA2MTV9.mb8i40SmEIaeDx3iePBM66SurYqYFGdHmrijpSC3zFg

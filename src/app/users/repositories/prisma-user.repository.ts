@@ -22,11 +22,16 @@ export class PrismaUserRepository implements UserRepositoryInterface {
       },
     });
 
-    const users = await this.prismaService.loan.findMany()
-
-    console.log(users);
-    
-
     return findEmail;
+  }
+
+  public async findById(id: string) {
+    const user = await this.prismaService.user.findUnique({
+      where: {
+        id,
+      },
+    });
+
+    return user;
   }
 }
