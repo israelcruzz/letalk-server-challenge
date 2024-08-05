@@ -16,8 +16,6 @@ model User {
   birthDate DateTime
   createdAt DateTime @default(now())
   loan      Loan[]
-
-  @@map("users")
 }
 
 model Loan {
@@ -36,8 +34,6 @@ model Loan {
   simulations Simulations[]
 
   user User @relation(fields: [userId], references: [id])
-
-  @@map("loans")
 }
 
 model Simulations {
@@ -50,8 +46,6 @@ model Simulations {
   loanId               String
 
   loan Loan @relation(fields: [loanId], references: [id])
-
-  @@map("simulations")
 }
 
 enum State {
