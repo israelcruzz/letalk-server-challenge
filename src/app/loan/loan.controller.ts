@@ -15,7 +15,9 @@ import { TokenPayload } from '../auth/strategies/jwt-strategy';
 import { CreateLoanDto } from './dto/create-loan.dto';
 import { JwtAuthGuard } from '../guards/jwt-auth-guard';
 import { LoanService } from './loan.service';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('loan')
 @Controller('loan')
 export class LoanController {
   constructor(private readonly loanService: LoanService) {}

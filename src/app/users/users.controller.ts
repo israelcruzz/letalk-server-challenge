@@ -12,7 +12,9 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { JwtAuthGuard } from '../guards/jwt-auth-guard';
 import { CurrentUser } from '../decorators/current-user';
 import { TokenPayload } from '../auth/strategies/jwt-strategy';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('users')
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
