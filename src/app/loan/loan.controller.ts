@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Get,
   Post,
   UseGuards,
   UsePipes,
@@ -23,6 +24,14 @@ export class LoanController {
     @Body() body: CreateLoanDto,
   ) {
     const response = await this.loanService.store(body, user.sub);
+
+    return response;
+  }
+
+  @Get()
+  @UseGuards(JwtAuthGuard)
+  public async findMany(@CurrentUser() user: TokenPayload) {
+    const response = await this.loanService.findMany(user.sub);
 
     return response;
   }

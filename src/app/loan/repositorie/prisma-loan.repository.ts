@@ -40,4 +40,16 @@ export class PrismaLoanRepository implements LoanRepositoryInterface {
 
     return { loan: loan.id };
   }
+
+  public async findMany(userId: string) {
+    const loans = await this.prismaService.loan.findMany({
+      where: {
+        userId,
+      },
+    });
+
+    if (loans.length === 0) return null;
+
+    return loans;
+  }
 }

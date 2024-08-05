@@ -11,4 +11,10 @@ export class LoanService {
 
     return loan;
   }
+
+  public async findMany(userId: string) {
+    const loans = await this.loanRepository.findMany(userId);
+
+    return loans;
+  }
 }
