@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { UsersService } from '../users/users.service';
 import { MESSAGE_HELPERS } from '../helpers/messages-helpers';
 import { HashService } from '../services/hash/hash.service';
@@ -21,30 +25,35 @@ export class AuthService {
   }
 
   public async authenticate(user: AuthUserDto) {
-    const { email, password } = user;
+    try {
+      const { email, password } = user;
 
-    const findUser = await this.userService.findByEmail(email);
+      const findUser = await this.userService.findByEmail(email);
 
-    if (!findUser) {
-      throw new NotFoundException(MESSAGE_HELPERS.emailOrPasswordError);
+      if (!findUser) {
+        throw new NotFoundException(MESSAGE_HELPERS.emailOrPasswordError);
+      }
+
+      const validationPassword = await this.hashService.comparePasswords(
+        password,
+        findUser.password,
+      );
+
+      if (!validationPassword) {
+        throw new NotFoundException(MESSAGE_HELPERS.emailOrPasswordError);
+      }
+
+      const token = this.jwtService.sign(
+        { sub: findUser.id },
+        { secret: this.secret },
+      );
+
+      return {
+        token,
+      };
+    } catch (error) {
+      console.log(error);
+      throw new BadRequestException(MESSAGE_HELPERS.systemError);
     }
-
-    const validationPassword = await this.hashService.comparePasswords(
-      password,
-      findUser.password,
-    );
-
-    if (!validationPassword) {
-      throw new NotFoundException(MESSAGE_HELPERS.emailOrPasswordError);
-    }
-
-    const token = this.jwtService.sign(
-      { sub: findUser.id },
-      { secret: this.secret },
-    );
-
-    return {
-      token,
-    };
   }
 }

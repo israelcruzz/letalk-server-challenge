@@ -17,42 +17,56 @@ export class UsersService {
   ) {}
 
   public async create(user: CreateUserDto) {
-    const verifyUserExistWithSameEmail = await this.usersRepository.findByEmail(
-      user.email,
-    );
+    try {
+      const verifyUserExistWithSameEmail =
+        await this.usersRepository.findByEmail(user.email);
 
-    if (verifyUserExistWithSameEmail) {
-      throw new NotFoundException(MESSAGE_HELPERS.userEmailExist);
+      if (verifyUserExistWithSameEmail) {
+        throw new NotFoundException(MESSAGE_HELPERS.userEmailExist);
+      }
+
+      const hashPassword = await this.hashService.hashPassword(user.password);
+
+      const userData = new User({
+        name: user.name,
+        email: user.email,
+        password: hashPassword,
+        cpf: user.cpf,
+        birthDate: user.birthDate,
+      });
+
+      const account = await this.usersRepository.store(userData);
+
+      return account;
+    } catch (error) {
+      console.log(error);
+      throw new BadRequestException(MESSAGE_HELPERS.systemError);
     }
-
-    const hashPassword = await this.hashService.hashPassword(user.password);
-
-    const userData = new User({
-      name: user.name,
-      email: user.email,
-      password: hashPassword,
-      cpf: user.cpf,
-      birthDate: user.birthDate,
-    });
-
-    const account = await this.usersRepository.store(userData);
-
-    return account;
   }
 
   public async findByEmail(email: string) {
-    const user = await this.usersRepository.findByEmail(email);
+    try {
+      const user = await this.usersRepository.findByEmail(email);
 
-    return user;
+      return user;
+    } catch (error) {
+      console.log(error);
+      throw new BadRequestException(MESSAGE_HELPERS.systemError);
+    }
   }
 
   public async findById(id: string) {
-    const user = await this.usersRepository.findById(id);
+    try {
+      const user = await this.usersRepository.findById(id);
 
-    if (!user) {
-      throw new BadRequestException(MESSAGE_HELPERS.userError);
+      if (!user) {
+        throw new BadRequestException(MESSAGE_HELPERS.userError);
+      }
+
+      return user;
+    } catch (error) {
+      console.log(error);
+      throw new BadRequestException(MESSAGE_HELPERS.systemError);
     }
-
-    return user;
   }
 }

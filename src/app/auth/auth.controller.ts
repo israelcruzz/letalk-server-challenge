@@ -1,9 +1,12 @@
 import {
   Body,
-  Controller, Post, UsePipes
+  Controller,
+  HttpCode,
+  HttpStatus,
+  InternalServerErrorException,
+  Post
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { ZodValidatePipe } from '../pipes/zod-validation-type';
 import { AuthUserDto } from './dto/auth-user.dto';
 
 @Controller('auth')
@@ -11,9 +14,15 @@ export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post()
+  @HttpCode(HttpStatus.OK)
   public async authenticate(@Body() body: AuthUserDto) {
-    const response = await this.authService.authenticate(body);
+    try {
+      const response = await this.authService.authenticate(body);
 
-    return response;
+      return response;
+    } catch (error) {
+      console.log(error);
+      throw new InternalServerErrorException();
+    }
   }
 }

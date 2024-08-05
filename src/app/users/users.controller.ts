@@ -1,10 +1,11 @@
 import {
   Controller,
   Post,
-  Body,
-  UsePipes,
-  Get,
+  Body, Get,
   UseGuards,
+  InternalServerErrorException,
+  HttpCode,
+  HttpStatus
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -17,17 +18,29 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Post('/signup')
+  @HttpCode(HttpStatus.CREATED)
   public async create(@Body() body: CreateUserDto) {
-    const response = await this.usersService.create(body);
+    try {
+      const response = await this.usersService.create(body);
 
-    return response;
+      return response;
+    } catch (error) {
+      console.log(error);
+      throw new InternalServerErrorException();
+    }
   }
 
   @Get()
   @UseGuards(JwtAuthGuard)
+  @HttpCode(HttpStatus.OK)
   public async view(@CurrentUser() user: TokenPayload) {
-    const response = await this.usersService.findById(user.sub);
+    try {
+      const response = await this.usersService.findById(user.sub);
 
-    return response;
+      return response;
+    } catch (error) {
+      console.log(error);
+      throw new InternalServerErrorException();
+    }
   }
 }
