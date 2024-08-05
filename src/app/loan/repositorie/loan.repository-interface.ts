@@ -8,4 +8,5 @@ export abstract class LoanRepositoryInterface {
   updateState: (loanId: string) => Promise<{
     loanId: string;
   }>;
+  findById: (loanId: string) => Promise<Loan>;
 }
