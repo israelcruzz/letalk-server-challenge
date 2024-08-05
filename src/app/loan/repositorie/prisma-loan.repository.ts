@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/app/services/prisma/prisma.service';
 import { LoanRepositoryInterface } from './loan.repository-interface';
 import { CreateLoanDto } from '../dto/create-loan.dto';
+import { State } from '../entitie/loan.entitie';
 
 @Injectable()
 export class PrismaLoanRepository implements LoanRepositoryInterface {
@@ -72,5 +73,18 @@ export class PrismaLoanRepository implements LoanRepositoryInterface {
     });
 
     return loan;
+  }
+
+  public async updateState(loanId: string) {
+    await this.prismaService.loan.update({
+      where: {
+        id: loanId,
+      },
+      data: {
+        state: 'CANCELED',
+      },
+    });
+
+    return { loanId };
   }
 }

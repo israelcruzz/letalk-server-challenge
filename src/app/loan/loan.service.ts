@@ -2,6 +2,7 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { LoanRepositoryInterface } from './repositorie/loan.repository-interface';
 import { CreateLoanDto } from './dto/create-loan.dto';
 import { MESSAGE_HELPERS } from '../helpers/messages-helpers';
+import { State } from './entitie/loan.entitie';
 
 @Injectable()
 export class LoanService {
@@ -25,6 +26,12 @@ export class LoanService {
     if (!loan) {
       throw new BadRequestException(MESSAGE_HELPERS.loanError);
     }
+
+    return loan;
+  }
+
+  public async updateState(loanId: string) {
+    const loan = await this.loanRepository.updateState(loanId);
 
     return loan;
   }

@@ -3,6 +3,7 @@ import {
   Controller,
   Get,
   Param,
+  Patch,
   Post,
   UseGuards,
   UsePipes,
@@ -13,6 +14,7 @@ import { TokenPayload } from '../auth/strategies/jwt-strategy';
 import { CreateLoanDto } from './dto/create-loan.dto';
 import { JwtAuthGuard } from '../guards/jwt-auth-guard';
 import { LoanService } from './loan.service';
+import { State } from './entitie/loan.entitie';
 
 @Controller('loan')
 export class LoanController {
@@ -41,6 +43,14 @@ export class LoanController {
   @UseGuards(JwtAuthGuard)
   public async view(@Param('loanId') loanId: string) {
     const response = await this.loanService.show(loanId);
+
+    return response;
+  }
+
+  @Patch('/:loanId')
+  @UseGuards(JwtAuthGuard)
+  public async cancelLoan(@Param('loanId') loanId: string) {
+    const response = await this.loanService.updateState(loanId);
 
     return response;
   }
