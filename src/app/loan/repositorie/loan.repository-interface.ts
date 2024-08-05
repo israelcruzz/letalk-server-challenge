@@ -4,4 +4,5 @@ import { CreateLoanDto } from '../dto/create-loan.dto';
 export abstract class LoanRepositoryInterface {
   store: (data: CreateLoanDto, userId: string) => Promise<{ loan: string }>;
   findMany: (userId: string) => Promise<Loan[]>;
+  show: (loanId: string) => Promise<Loan>;
 }

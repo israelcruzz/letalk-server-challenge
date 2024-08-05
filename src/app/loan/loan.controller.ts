@@ -2,6 +2,7 @@ import {
   Body,
   Controller,
   Get,
+  Param,
   Post,
   UseGuards,
   UsePipes,
@@ -32,6 +33,14 @@ export class LoanController {
   @UseGuards(JwtAuthGuard)
   public async findMany(@CurrentUser() user: TokenPayload) {
     const response = await this.loanService.findMany(user.sub);
+
+    return response;
+  }
+
+  @Get('/:loanId')
+  @UseGuards(JwtAuthGuard)
+  public async view(@Param('loanId') loanId: string) {
+    const response = await this.loanService.show(loanId);
 
     return response;
   }

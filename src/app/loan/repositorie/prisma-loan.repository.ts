@@ -52,4 +52,25 @@ export class PrismaLoanRepository implements LoanRepositoryInterface {
 
     return loans;
   }
+
+  public async show(loanId: string) {
+    const loan = await this.prismaService.loan.findUnique({
+      where: {
+        id: loanId,
+      },
+      include: {
+        user: {
+          select: {
+            name: true,
+            email: true,
+            cpf: true,
+            birthDate: true,
+          },
+        },
+        simulations: true,
+      },
+    });
+
+    return loan;
+  }
 }

@@ -1,6 +1,7 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { LoanRepositoryInterface } from './repositorie/loan.repository-interface';
 import { CreateLoanDto } from './dto/create-loan.dto';
+import { MESSAGE_HELPERS } from '../helpers/messages-helpers';
 
 @Injectable()
 export class LoanService {
@@ -16,5 +17,15 @@ export class LoanService {
     const loans = await this.loanRepository.findMany(userId);
 
     return loans;
+  }
+
+  public async show(loanId: string) {
+    const loan = await this.loanRepository.show(loanId);
+
+    if (!loan) {
+      throw new BadRequestException(MESSAGE_HELPERS.loanError);
+    }
+
+    return loan;
   }
 }
