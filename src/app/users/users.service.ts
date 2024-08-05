@@ -1,5 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { ICreateUserDto } from './dto/create-user.dto';
+import { CreateUserDto } from './dto/create-user.dto';
 import { HashService } from '../services/hash/hash.service';
 import { UserRepositoryInterface } from './repositories/user.repository-interface';
 import { User } from './entities/user.entity';
@@ -12,7 +12,7 @@ export class UsersService {
     private readonly hashService: HashService,
   ) {}
 
-  public async create(user: ICreateUserDto) {
+  public async create(user: CreateUserDto) {
     const verifyUserExistWithSameEmail = await this.usersRepository.findByEmail(
       user.email,
     );

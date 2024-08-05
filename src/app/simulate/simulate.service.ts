@@ -1,11 +1,12 @@
 import { Injectable } from '@nestjs/common';
-import { ISimulateLoanDto } from './dto/simulate.dto';
 import { loanSimulate, LoanSimulateType } from '../utils/loan-simulate';
+import { SimulateLoanDto } from './dto/simulate-loan.dto';
 
 @Injectable()
 export class SimulateService {
-  public simulate(body: ISimulateLoanDto) {
-    const simulateData: ISimulateLoanDto = {
+
+  public simulate(body: SimulateLoanDto) {
+    const simulateData: SimulateLoanDto = {
       monthlyPayment: body.monthlyPayment,
       totalDebt: body.totalDebt,
       uf: body.uf,

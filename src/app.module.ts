@@ -5,8 +5,8 @@ import { AuthModule } from './app/auth/auth.module';
 import { HashService } from './app/services/hash/hash.service';
 import { ConfigModule } from '@nestjs/config';
 import { envSchema } from './app/utils/env';
-import { LoanModule } from './app/loan/loan.module';
 import { SimulateModule } from './app/simulate/simulate.module';
+import { LoanModule } from './app/loan/loan.module';
 
 @Module({
   imports: [

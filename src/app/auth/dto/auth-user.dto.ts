@@ -1,8 +1,12 @@
-import { z } from 'zod';
+import { IsEmail, IsNotEmpty, Matches, MinLength } from 'class-validator';
 
-export const authUserSchema = z.object({
-  email: z.coerce.string().email(),
-  password: z.string().min(8),
-});
+export class AuthUserDto {
+  @IsEmail({}, { message: 'Invalid email address' })
+  @IsNotEmpty({ message: 'Email is required' })
+  email: string;
 
-export type IAuthUserSchema = z.infer<typeof authUserSchema>;
+  @IsNotEmpty({ message: 'Password is required' })
+  @MinLength(8, { message: 'Password must be at least 8 characters long' })
+  @Matches(/\d/, { message: 'Password must contain at least one number' })
+  password: string;
+}

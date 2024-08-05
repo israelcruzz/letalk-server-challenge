@@ -1,4 +1,4 @@
-interface ISimulate {
+export interface ISimulate {
   id: string;
   debitBalance: number;
   fees: number;

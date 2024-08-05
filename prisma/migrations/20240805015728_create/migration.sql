@@ -1,3 +1,6 @@
+-- CreateEnum
+CREATE TYPE "State" AS ENUM ('PENDING', 'ACTIVE', 'CANCELED');
+
 -- CreateTable
 CREATE TABLE "users" (
     "id" TEXT NOT NULL,
@@ -23,6 +26,7 @@ CREATE TABLE "loans" (
     "uf" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "state" "State" NOT NULL DEFAULT 'PENDING',
 
     CONSTRAINT "loans_pkey" PRIMARY KEY ("id")
 );

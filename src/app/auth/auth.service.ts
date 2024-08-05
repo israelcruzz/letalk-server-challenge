@@ -1,11 +1,11 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { UsersService } from '../users/users.service';
-import { IAuthUserSchema } from './dto/auth-user.dto';
 import { MESSAGE_HELPERS } from '../helpers/messages-helpers';
 import { HashService } from '../services/hash/hash.service';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 import { Env } from '../utils/env';
+import { AuthUserDto } from './dto/auth-user.dto';
 
 @Injectable()
 export class AuthService {
@@ -20,7 +20,7 @@ export class AuthService {
     this.secret = this.configService.get('JWT_SECRET', { infer: true });
   }
 
-  public async authenticate(user: IAuthUserSchema) {
+  public async authenticate(user: AuthUserDto) {
     const { email, password } = user;
 
     const findUser = await this.userService.findByEmail(email);

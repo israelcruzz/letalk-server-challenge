@@ -1,13 +1,15 @@
 @baseUrl = http://localhost:3333
 @authToken = {{login.response.body.token}}
 
+@userId = b3c6859e-f480-47ed-a0c8-cdb9904c0618
+
 # @name create_account
 POST http://localhost:3333/users/signup
 Content-Type: application/json
 
 {
     "name": "Israel",
-    "email": "israelcruzzz@dev.com",
+    "email": "israelcruzz@dev.com",
     "password": "12345678",
     "cpf": "570.795.808-89",
     "birthDate": "2024-08-01 18:00:00"
@@ -19,13 +21,9 @@ POST http://localhost:3333/auth
 Content-Type: application/json
 
 {
-    "email": "israelcruzzz@dev.com",
+    "email": "israelcruzz@dev.com",
     "password": "12345678"
 }
-
-###
-
-GET http://localhost:3333/users
 
 ###
 # @name simulate_fic
@@ -36,4 +34,36 @@ Content-Type: application/json
     "monthlyPayment": 15000,
     "totalDebt": 60000,
     "uf": "SP"
+}
+
+###
+
+POST http://localhost:3333/loan/create
+Content-Type: application/json
+
+{
+  "requiredValue": 60000,
+  "amountMonth": 5000,
+  "interestRate": 0.05,
+  "monthsPayOff": 12,
+  "totalInterest": 10000,
+  "totalPay": 70000,
+  "uf": "SP",
+  "state": "PENDING",
+  "simulates": [
+    {
+      "debitBalance": 50000,
+      "fees": 1000,
+      "adjustedDebitBalance": 51000,
+      "installmentValue": 4000,
+      "maturity": "2023-03-15T00:00:00.000Z"
+    },
+    {
+      "debitBalance": 45000,
+      "fees": 900,
+      "adjustedDebitBalance": 45900,
+      "installmentValue": 3500,
+      "maturity": "2023-04-15T00:00:00.000Z"
+    }
+  ]
 }
