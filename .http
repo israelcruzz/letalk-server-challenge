@@ -4,7 +4,7 @@
 @userId = b3c6859e-f480-47ed-a0c8-cdb9904c0618
 
 # @name create_account
-POST http://localhost:3333/users/signup
+POST https://letalk-server-challenge.vercel.app/users/signup
 Content-Type: application/json
 
 {
@@ -17,7 +17,7 @@ Content-Type: application/json
 
 ###
 # @name login
-POST http://localhost:3333/auth
+POST https://letalk-server-challenge.vercel.app/auth
 Content-Type: application/json
 
 {
