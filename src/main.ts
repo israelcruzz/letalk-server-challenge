@@ -4,16 +4,22 @@ import { AppModule } from './app.module';
 import { ConfigService } from '@nestjs/config';
 import { Env } from './app/utils/env';
 import { ValidationPipe } from '@nestjs/common';
+import {
+  FastifyAdapter,
+  NestFastifyApplication,
+} from '@nestjs/platform-fastify';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule, { cors: true });
+  const app = await NestFactory.create<NestFastifyApplication>(
+    AppModule,
+    new FastifyAdapter(),
+  );
 
-  app.enableCors({
-    origin: '*',
-    credentials: true,
+  app.register(require('fastify-cors'), {
+    origin: "*",
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    allowedHeaders:
-      'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version',
+    preflightContinue: false,
+    optionsSuccessStatus: 204
   });
 
   const configService = app.get<ConfigService<Env, true>>(ConfigService);
