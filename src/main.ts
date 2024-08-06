@@ -3,7 +3,6 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ConfigService } from '@nestjs/config';
 import { Env } from './app/utils/env';
-import cors from 'cors';
 import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
@@ -11,10 +10,11 @@ async function bootstrap() {
 
   app.enableCors({
     origin: '*',
-    credentials: false,
+    credentials: true,
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    allowedHeaders:
+      'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version',
   });
-
-  app.use(cors());
 
   const configService = app.get<ConfigService<Env, true>>(ConfigService);
   const port = configService.get('PORT', { infer: true });
