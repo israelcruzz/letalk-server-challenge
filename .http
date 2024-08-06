@@ -9,7 +9,7 @@ Content-Type: application/json
 
 {
     "name": "Israel",
-    "email": "israelcruzz@dev.com",
+    "email": "israelcruazz@dev.com",
     "password": "12345678",
     "cpf": "570.795.808-89",
     "birthDate": "2024-08-01 18:00:00"
