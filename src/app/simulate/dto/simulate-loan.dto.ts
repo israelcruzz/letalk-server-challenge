@@ -23,7 +23,7 @@ export class SimulateLoanDto {
     description: 'Total da dívida do empréstimo. Deve ser um número positivo.',
   })
   @IsNumber({}, { message: 'Total debt must be a number' })
-  @Min(0, { message: 'Total debt must be a positive number' })
+  @Min(50000, { message: 'Total debt must be a positive number' })
   totalDebt: number;
 
   @ApiProperty({
