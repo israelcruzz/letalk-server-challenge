@@ -3,7 +3,6 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ConfigService } from '@nestjs/config';
 import { Env } from './app/utils/env';
-import cors from "cors";
 import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
@@ -29,12 +28,11 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
 
-  app.use(cors({
+  app.enableCors({
     origin: '*',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    preflightContinue: false,
-    optionsSuccessStatus: 204,
-  }));
+    credentials: true,
+  });
 
   await app.listen(port);
 }
