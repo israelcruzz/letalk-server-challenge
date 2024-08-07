@@ -1,107 +1,74 @@
-# Letalk Loan Simulation Server
+# Backend da Simulação de Empréstimos Letalk
 
-Este repositório contém a implementação do servidor para o desafio técnico da Letalk. A aplicação é responsável por gerenciar simulações de empréstimos para pessoa física.
+Este repositório contém a implementação backend para o Desafio de Simulação de Empréstimos da Letalk. A aplicação fornece uma API para simular e gerenciar solicitações de empréstimo, e inclui uma documentação interativa via Swagger.
 
-## Índice
-
-- [Descrição](#descrição)
+## Sumário
+- [Introdução](#introdução)
 - [Tecnologias Utilizadas](#tecnologias-utilizadas)
-- [Instalação](#instalação)
-- [Configuração](#configuração)
-- [Execução](#execução)
-- [Rotas da API](#rotas-da-api)
-- [Modelo de Dados](#modelo-de-dados)
 - [Arquitetura](#arquitetura)
+- [Funcionalidades](#funcionalidades)
+- [API](#api)
+- [Instalação](#instalação)
+- [Uso](#uso)
 - [Contribuição](#contribuição)
 - [Licença](#licença)
 
-## Descrição
-
-Este projeto implementa uma API para simulação de empréstimos utilizando Node.js, Fastify e Prisma. A API permite criar, listar, atualizar e deletar simulações de empréstimo.
-
-A aplicação está atualmente rodando em [http://localhost:3000](http://localhost:3000).
+## Introdução
+O backend da aplicação de Simulação de Empréstimos da Letalk é responsável por processar as solicitações de empréstimo e fornecer a lógica de negócios necessária. A API permite a criação, visualização e gestão de solicitações de empréstimo, e está documentada usando Swagger.
 
 ## Tecnologias Utilizadas
+- **Node.js**: Ambiente de execução JavaScript para o backend.
+- **Fastify**: Framework de web server rápido e eficiente.
+- **TypeScript**: Linguagem que adiciona tipagem estática ao JavaScript.
+- **Prisma**: ORM para acesso ao banco de dados.
+- **Swagger**: Ferramenta para documentação e teste da API.
+- **bcrypt.js**: Biblioteca para hashing de senhas.
 
-- [Node.js](https://nodejs.org/)
-- [Fastify](https://www.fastify.io/)
-- [Prisma](https://www.prisma.io/)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Zod](https://github.com/colinhacks/zod)
-- [class-validator](https://github.com/typestack/class-validator)
+## Arquitetura
+A arquitetura do projeto é baseada em uma estrutura modular e escalável com os seguintes componentes principais:
+
+- **Camada de Controladores**: Responsável por gerenciar as requisições HTTP e interagir com os serviços.
+- **Camada de Serviços**: Contém a lógica de negócios da aplicação. Interage com a camada de repositórios e realiza cálculos e validações.
+- **Camada de Repositórios**: Interage com o banco de dados usando Prisma para realizar operações CRUD.
+- **Camada de Validação**: Utiliza o Zod e o class-validator para garantir que os dados recebidos sejam válidos e seguros.
+- **Camada de Documentação**: Configurada com Swagger para fornecer uma interface interativa para explorar e testar a API.
+
+## Funcionalidades
+- **Simulação de Empréstimo**: Endpoint para calcular as parcelas e condições do empréstimo com base nos parâmetros fornecidos.
+- **Efetivação de Empréstimo**: Endpoint para finalizar a solicitação de um empréstimo.
+- **Consulta de Empréstimos**: Endpoint para consultar empréstimos efetivados.
+- **Documentação da API**: Interface Swagger para explorar e testar os endpoints da API.
+
+## API
+A documentação da API está disponível em: [Swagger Documentation](https://letalk-server-challenge.onrender.com/API#/)
+
+A URL base da API é: [https://letalk-server-challenge.onrender.com](https://letalk-server-challenge.onrender.com)
 
 ## Instalação
+Para rodar o backend localmente, siga estes passos:
 
 1. Clone o repositório:
-
    ```bash
    git clone https://github.com/israelcruzz/letalk-server-challenge.git
    ```
 
 2. Navegue até o diretório do projeto:
-
    ```bash
    cd letalk-server-challenge
    ```
 
 3. Instale as dependências:
-
    ```bash
    npm install
    ```
 
-## Configuração
+4. Configure as variáveis de ambiente (se necessário). Veja o arquivo `.env.example` para detalhes.
 
-Crie um arquivo `.env` na raiz do projeto e adicione as seguintes variáveis de ambiente:
+5. Inicie o servidor:
+   ```bash
+   npm start
+   ```
 
-```env
-DATABASE_URL="sua_url_do_banco_de_dados"
-PORT=3000
-```
-
-## Execução
-
-Para iniciar o servidor, execute:
-
-```bash
-npm run dev
-```
-
-A aplicação estará rodando em [http://localhost:3000](http://localhost:3000).
-
-## Rotas da API
-
-| Método | Rota                     | Descrição                                 |
-|--------|--------------------------|-------------------------------------------|
-| GET    | /loans                   | Lista todas as simulações de empréstimo   |
-| GET    | /loans/:id               | Obtém uma simulação de empréstimo por ID  |
-| POST   | /loans                   | Cria uma nova simulação de empréstimo     |
-| PUT    | /loans/:id               | Atualiza uma simulação de empréstimo por ID|
-| DELETE | /loans/:id               | Deleta uma simulação de empréstimo por ID |
-
-## Modelo de Dados
-
-![Modelo de Dados](caminho/para/sua/imagem.png)
-
-## Arquitetura
-
-Este projeto segue os princípios de Clean Architecture, visando manter o código organizado, reutilizável e de fácil manutenção. A estrutura de diretórios está organizada da seguinte forma:
-
-- **src/**: Contém o código fonte da aplicação
-  - **controllers/**: Controladores responsáveis por lidar com as requisições HTTP
-  - **services/**: Contém a lógica de negócios da aplicação
-  - **repositories/**: Implementações para acessar os dados
-  - **entities/**: Definições das entidades do domínio
-  - **dtos/**: Objetos de Transferência de Dados usados para validação e tipagem
-
-## Contribuição
-
-1. Faça um fork do projeto
-2. Crie uma branch para sua feature (`git checkout -b feature/MinhaFeature`)
-3. Faça commit das suas alterações (`git commit -m 'Adicionei MinhaFeature'`)
-4. Faça push para a branch (`git push origin feature/MinhaFeature`)
-5. Abra um Pull Request
-
-## Licença
-
-Este projeto está licenciado sob a MIT License. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+## Uso
+- Acesse a API localmente em `http://localhost:3333` (ou a URL configurada).
+- Explore a documentação e teste os endpoints na interface Swagger: [Swagger Documentation](https://letalk-server-challenge.onrender.com/API#/).
