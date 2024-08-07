@@ -17,7 +17,7 @@ Content-Type: application/json
 
 ###
 # @name login
-POST https://letalk-server-challenge.vercel.app/auth
+POST http://localhost:3333/auth
 Content-Type: application/json
 
 {
@@ -28,7 +28,7 @@ Content-Type: application/json
 
 ###
 # @name simulate_fic
-POST http://localhost:3333/simulate/fic
+POST http://localhost:3333/simulate
 Content-Type: application/json
 
 {
@@ -90,4 +90,4 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2Y2I1ZjAzO
 ###
 
 GET http://localhost:3333/users
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2Y2I1ZjAzOS1hZTA1LTRkMTItOTNlMS0xNmI3YTU3YTc4ZTQiLCJpYXQiOjE3MjI4MzA2MTV9.mb8i40SmEIaeDx3iePBM66SurYqYFGdHmrijpSC3zFg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2Y2I1ZjAzOS1hZTA1LTRkMTItOTNlMS0xNmI3YTU3YTc4ZTQiLCJpYXQiOjE3MjI5NDgzMDJ9.EA_4PXorDLv08crtzhkJZgipDIgwDFfiU1GIgPW1JPg

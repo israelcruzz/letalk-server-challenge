@@ -4,23 +4,11 @@ import { AppModule } from './app.module';
 import { ConfigService } from '@nestjs/config';
 import { Env } from './app/utils/env';
 import { ValidationPipe } from '@nestjs/common';
-import {
-  FastifyAdapter,
-  NestFastifyApplication,
-} from '@nestjs/platform-fastify';
 
 async function bootstrap() {
-  const app = await NestFactory.create<NestFastifyApplication>(
-    AppModule,
-    new FastifyAdapter(),
-  );
+  const app = await NestFactory.create(AppModule);
 
-  app.register(require('fastify-cors'), {
-    origin: "*",
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    preflightContinue: false,
-    optionsSuccessStatus: 204
-  });
+  app.enableCors();
 
   const configService = app.get<ConfigService<Env, true>>(ConfigService);
   const port = configService.get('PORT', { infer: true });
