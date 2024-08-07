@@ -1,5 +1,7 @@
 # Backend da Simulação de Empréstimos Letalk
 
+<img src="https://github.com/israelcruzz/letalk-challenge-frontend/blob/main/public/thumbs/capa.png?raw=true" height="100%" />
+
 Este repositório contém a implementação backend para o Desafio de Simulação de Empréstimos da Letalk. A aplicação fornece uma API para simular e gerenciar solicitações de empréstimo, e inclui uma documentação interativa via Swagger.
 
 ## Sumário
