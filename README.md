@@ -4,6 +4,10 @@
 
 Este repositório contém a implementação backend para o Desafio de Simulação de Empréstimos da Letalk. A aplicação fornece uma API para simular e gerenciar solicitações de empréstimo, e inclui uma documentação interativa via Swagger.
 
+## Aviso de Deploy na Render
+
+Este projeto foi implantado utilizando o serviço Render. Por conta das políticas de inatividade do Render, a API pode ficar inativa após um período sem requisições. Quando isso ocorre, pode levar de 1 a 2 minutos para que a API seja reativada após a primeira requisição. Portanto, se você encontrar um atraso na resposta inicial, por favor, aguarde enquanto a API é reativada.
+
 ## Sumário
 - [Introdução](#introdução)
 - [Tecnologias Utilizadas](#tecnologias-utilizadas)
